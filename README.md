@@ -5,8 +5,20 @@ This is python behavior driven development example for unix **find** command.
 
 **find** command is not fully featured. Purpose is to demonstrate BDD.
 
+The BDD process can be simply defined as
+
+* Write a failing acceptance test
+* Write a failing unit test
+* Make the unit test pass
+* Refactor
+* Make the acceptance test pass
+ 
+
 We are using python and behave to drive the BDD.
 Assuming that python, behave, pyhamcrest are already installed.
+
+
+ 
 
 Directory Structure is as follows
 
@@ -163,4 +175,6 @@ if __name__ == '__main__':
 	j.find_impl()
 ```
 
-Eventhough I've skipped many steps. Hope this information is sufficient to start with python BDD. 
+With fully populated code, run 'behave' command again & see all the step definitions are turning green.
+
+Eventhough it's not deep dive. I hope this information is sufficient to start with python BDD. 
