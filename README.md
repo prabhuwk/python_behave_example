@@ -1,12 +1,12 @@
 Python BDD Example
 =========
 
-This is python behavior driven development example for **find** command.
+This is python behavior driven development example for unix **find** command.
 
-find command is not fully featured. Purpose is to demonstrate BDD.
+**find** command is not fully featured. Purpose is to demonstrate BDD.
 
 We are using python and behave to drive the BDD.
-Assuming that python, behave, hamcrest are already installed.
+Assuming that python, behave, pyhamcrest are already installed.
 
 Directory Structure is as follows
 
@@ -20,12 +20,10 @@ Directory Structure is as follows
 |-- README.md
 `-- steps
     `-- findapp_steps.py
-
-4 directories, 5 files
 ```
 
 
-Create a .feature file. I'm not going through details of .feature file.
+Create a /features/findapp.feature file. I'm not going through details of .feature file.
 
 ``` Cucumber
 Feature: Implementing unix find command
@@ -42,6 +40,12 @@ Feature: Implementing unix find command
 
 
 "features" and "steps" directories should exists before running 'behave' command.
+Run 'behave' command
+```bash
+#behave
+```
+
+
 After running 'behave' command, we get step definitions which we can safely copy and put it in our "steps/findapp_steps.py" file
 
 ```python
@@ -59,7 +63,7 @@ def step_impl(context):
 ```
 
 
-Now modify your to fit your first step
+Now modify your step definition file to pass your first step
 
 ```python
 import sys
@@ -84,9 +88,10 @@ def step_impl(context):
 ```
 
 
-run 'behave' and see it failing due to following error
+Run 'behave' and see it failing due to following error
+```python
 NameError: global name 'Findapp' is not defined
-
+```
 
 Now create bin/find.py file, make the first test pass
 
@@ -103,11 +108,11 @@ class Findapp:
 ```
 
 
-run 'behave' command again and see the first test passing.
+Run 'behave' command again and see the first test passing.
 
 Accordingly you can develop your steps definition file and code. End of the goal is to make all tests pass.
 
-final snippet of "steps/findapp_steps.py" file
+Final snippet of "steps/findapp_steps.py" file
 ```python
 import sys
 from behave import given, when, then
@@ -158,26 +163,4 @@ if __name__ == '__main__':
 	j.find_impl()
 ```
 
-
-'behave' command output snippet
-``` cucumber
-Feature: Implementing unix find command # features/findapp.feature:1
-
-Scenario Outline: unix find command               # features/findapp.feature:2
-Given name of "." and ".*.py"                   # steps/findapp_steps.py:7 0.000s
-When I execute definition                       # steps/findapp_steps.py:13 0.001s
-Then result should contain "./bin/find.py" file # steps/findapp_steps.py:17 0.000s
-
-Scenario Outline: unix find command                  # features/findapp.feature:2
-Given name of "/etc" and ".*.bash"                 # steps/findapp_steps.py:7 0.000s
-When I execute definition                          # steps/findapp_steps.py:13 0.039s
-Then result should contain "/etc/bash.bashrc" file # steps/findapp_steps.py:17 0.000s
-
-1 feature passed, 0 failed, 0 skipped
-2 scenarios passed, 0 failed, 0 skipped
-6 steps passed, 0 failed, 0 skipped, 0 undefined
-Took 0m0.041s
-```
-
 Eventhough I've skipped many steps. Hope this information is sufficient to start with python BDD. 
-
